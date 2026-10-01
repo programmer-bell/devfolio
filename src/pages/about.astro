@@ -8,8 +8,8 @@ const skills = ["HTML", "CSS", "JS", "Astro"];
     <p>{site.bio}</p>
     <h2>Skills</h2>
     <div class="tags">
-    {skills.map( (skill) => (
-        <span>{skill}</span>
+    {skills.map((skill: string) => (
+        <span class="tag">{skill}</span>
     ))}
     </div>
 

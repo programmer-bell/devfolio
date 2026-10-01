@@ -1,8 +1,29 @@
 ---
-import BasLayout from "../../layout/BasLayout.astro";
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layout/BasLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+
+type BlogPost = CollectionEntry<'blog'>;
+
+const posts: BlogPost[] = (await getCollection('blog')).sort(
+  (a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const getPostSlug = (id: string): string => id.replace(/\.md$/, '');
 ---
 
-<BasLayout title="Blog">
-    <h1>Blog</h1>
-    <p class="muted">Posts are comming</p>
-</BasLayout>
+<BaseLayout title="Blog">
+  <h1>Blog</h1>
+  <p class="muted">{posts.length} post{posts.length === 1 ? '' : 's'}</p>
+  <div class="grid">
+    {posts.map((post: BlogPost) => (
+      <PostCard
+        title={post.data.title}
+        description={post.data.description}
+        pubDate={post.data.pubDate}
+        tags={post.data.tags}
+        url={`/blog/${getPostSlug(post.id)}`}
+      />
+    ))}
+  </div>
+</BaseLayout>

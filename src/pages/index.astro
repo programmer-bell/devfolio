@@ -1,6 +1,8 @@
 ---
 import BasLayout from "../layout/BasLayout.astro";
 import { site } from "../data/site";
+
+type Social = (typeof site.socials)[number];
 ---
 
 <BasLayout title="Home">
@@ -8,15 +10,15 @@ import { site } from "../data/site";
 	<h1>Hi, I'm {site.name} 👋</h1>
 	<p>{site.role}</p>
 	<p>{site.bio}</p>
-	{site.opentowork && <span>✅ Open to work</span>}
+	{site.opentowork && <p><span class="tag">✅ Open to work</span></p>}
 	<ul class="socials">
-		{site.socials.map( (social) => (
+		{site.socials.map((social: Social) => (
 		<li>
 			<a href={social.url}>{social.label}</a>
 		</li>
 		))}
 	</ul>
-	<a href="/blog" class="btn">Read my block</a>
+	<a href="/blog" class="btn">Read my blog</a>
 	</section>
 </BasLayout>
 
