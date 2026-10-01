@@ -1,20 +1,16 @@
 ---
+import BasLayout from "../layout/BasLayout.astro";
 import { site } from "../data/site";
 const skills = ["HTML", "CSS", "JS", "Astro"];
 ---
+<BasLayout title="About">
+    <h1>About Me</h1>
+    <p>{site.bio}</p>
+    <h2>Skills</h2>
+    <div class="tags">
+    {skills.map( (skill) => (
+        <span>{skill}</span>
+    ))}
+    </div>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>about</title>
-	</head>
-	<body>
-        <h1>About Me</h1>
-        <p>{site.bio}</p>
-        <h2>Skills</h2>
-        {skills.map( (skill) => (
-            <span>{skill}</span>
-        ))}
-	</body>
-</html>
+</BasLayout>
