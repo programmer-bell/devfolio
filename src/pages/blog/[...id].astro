@@ -1,6 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layout/BasLayout.astro';
+import LikeButton from '../../components/LikeButton';
 
 type BlogPost = CollectionEntry<'blog'>;
 
@@ -34,4 +35,5 @@ const { Content } = await render(post);
   <article class="prose">
     <Content />
   </article>
+  <LikeButton client:visible />
 </BaseLayout>
