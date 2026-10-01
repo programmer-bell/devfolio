@@ -1,5 +1,6 @@
 # Devfolio
 **A Learning project on AstroJS**
+**Instructor: Sumit, Yt-Channel:Learn with Sumit - LWS - Bangladesh**
 # Astro Starter Kit: Minimal
 
 ```sh
