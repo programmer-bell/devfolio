@@ -1,0 +1,37 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layout/BasLayout.astro';
+
+type BlogPost = CollectionEntry<'blog'>;
+
+export async function getStaticPaths() {
+  const posts: BlogPost[] = await getCollection('blog');
+  return posts.map((post: BlogPost) => ({
+    params: { id: post.id.replace(/\.md$/, '') },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props as Props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={post.data.title}>
+  <a href="/blog" class="btn btn-outline">&larr; Back to blog</a>
+  <h1>{post.data.title}</h1>
+  <p class="muted">{post.data.pubDate.toDateString()}</p>
+  {post.data.tags.length > 0 && (
+    <div class="tags">
+      {post.data.tags.map((tag: string) => (
+        <span class="tag">{tag}</span>
+      ))}
+    </div>
+  )}
+  <article class="prose">
+    <Content />
+  </article>
+</BaseLayout>
