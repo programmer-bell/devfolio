@@ -1,0 +1,20 @@
+---
+import { site } from "../data/site";
+const skills = ["HTML", "CSS", "JS", "Astro"];
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>about</title>
+	</head>
+	<body>
+        <h1>About Me</h1>
+        <p>{site.bio}</p>
+        <h2>Skills</h2>
+        {skills.map( (skill) => (
+            <span>{skill}</span>
+        ))}
+	</body>
+</html>
