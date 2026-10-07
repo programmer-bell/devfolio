@@ -1,13 +1,15 @@
-Build forms from the actual backend validation rules.
+Review all user-controlled input and determine where validation, normalization, sanitization and output encoding are required.
 
-For every input define:
-- type
-- required/optional
-- constraints
-- validation message
-- allowed format
-- submission behavior
+Prevent:
+- XSS
+- unsafe HTML rendering
+- injection through URLs
+- unsafe redirects
+- malicious file names
+- dangerous user-provided attributes
 
-Show validation errors close to the relevant field.
+Do not blindly sanitize everything.
 
-Never rely exclusively on frontend validation; treat backend validation as authoritative.
+Prefer safe rendering APIs and framework defaults.
+
+Never trust frontend validation as a security boundary; the backend remains authoritative.
